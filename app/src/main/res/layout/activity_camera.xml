@@ -7,13 +7,13 @@
     android:id="@+id/root"
     tools:context=".ui.home.CameraActivity">
 
-    <TextureView
+    <TextureView android:visibility="gone"
         android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <androidx.camera.view.CameraView
-        android:id="@+id/ccc"
+        android:id="@+id/ccc" android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
