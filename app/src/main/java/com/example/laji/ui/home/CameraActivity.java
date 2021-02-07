@@ -1,50 +1,52 @@
-package com.example.laji;
+package com.example.laji.ui.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.CameraX;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.CameraView;
+import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Camera;
-import android.graphics.ImageFormat;
-import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
+import android.graphics.Canvas;
 import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.params.StreamConfigurationMap;
-import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.util.Size;
+import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
-import com.cjt2325.cameralibrary.state.CameraMachine;
-import com.cjt2325.cameralibrary.view.CameraView;
+import com.example.laji.R;
+import com.example.laji.ui.BHttp;
 import com.example.laji.ui.Config;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
 import static java.lang.Thread.sleep;
 
 public class CameraActivity extends AppCompatActivity {
+    private static final String TAG = "TTTTTTTTTTTTTTTTTTTT";
     String mBackCameraId;
     CameraCharacteristics mBackCameraCharacteristics;
     String mFrontCameraId;
@@ -53,7 +55,11 @@ public class CameraActivity extends AppCompatActivity {
     String mCameraId;
     TextureView mTextureView;
     CameraManager mCameraManager;
-int iii = 1;
+    int iii = 1;
+
+    JCameraView jCameraView;
+    CameraView ccc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,9 +91,12 @@ int iii = 1;
         }
 
         jCameraView = (JCameraView) findViewById(R.id.jcameraview);
+        ccc = findViewById(R.id.ccc);
 
         initXX();
 
+//        initJeptCXXX();
+        initJeptCXXX11();
 //        mSwitchCamera.setVisibility(INVISIBLE);
 //        mFlashLamp.setVisibility(INVISIBLE);
 //        machine.capture();
@@ -102,38 +111,83 @@ int iii = 1;
         new Thread(new Runnable() {
             @Override
             public void run() {
+                try {
+                    sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 while (true) {
                     try {
-
-                        sleep(Config.TIME * 1000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                //   jCameraView.confirmState(JCameraView.TYPE_PICTURE);
-                                ProgressDialog progressDialog = new ProgressDialog(context);
-                                progressDialog.setTitle("抓拍第"+iii+"次...");
-                                progressDialog.show();
-                                iii ++;
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            sleep(1000);
-                                            runOnUiThread(()->{
-                                                Toast.makeText(context, "处理完成", Toast.LENGTH_SHORT).show();
-                                                progressDialog.dismiss();
-                                            });
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
+                                try {
+
+                                    //   jCameraView.confirmState(JCameraView.TYPE_PICTURE);
+//                                    ProgressDialog progressDialog = new ProgressDialog(context);
+//                                    progressDialog.setTitle("抓拍第" + iii + "次...");
+//                                    progressDialog.show();
+                                    View lay = LayoutInflater.from(context).inflate(R.layout.sdsadas, null, false);
+//                                    setImg2(lay.findViewById(R.id.iv1));
+                                    jCameraView.setImg2(lay.findViewById(R.id.iv1));
+                                    BHttp.setModeImage(lay.findViewById(R.id.iv2));
+                                    AlertDialog progressDialog = new AlertDialog.Builder(context)
+//                                            .setTitle("处理中...")
+                                            .setView(lay)
+                                            .show();
+                                    iii++;
+
+
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                sleep(4000);
+                                                runOnUiThread(() -> {
+                                                    try {
+                                                        Toast.makeText(context, "处理完成", Toast.LENGTH_SHORT).show();
+                                                        progressDialog.dismiss();
+                                                    } catch (Exception e) {
+                                                    }
+                                                });
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
                                         }
-                                    }
-                                }).start();
+                                    }).start();
 //                                AlertDialog show = new AlertDialog.Builder(getApplicationContext()).show();
 //                                show.setTitle();
 
+                                } catch (Exception e) {
+                                }
+                            }
+
+                            private void setImg2(ImageView tempView) {
+                                try {
+
+                                    int childCount = jCameraView.getChildCount();
+                                    for (int i = 0; i < childCount; i++) {
+                                        View childAt = jCameraView.getChildAt(i);
+                                        if (childAt.callOnClick()) {
+
+                                        }
+                                        System.out.println(childAt+"          VVVVVVVVVVVVVVV");
+                                    }
+//                                    FrameLayout viewById = findViewById(R.id.root);
+//                                    Bitmap b = Bitmap.createBitmap(200 , 200, Bitmap.Config.ARGB_8888);
+//                                    Canvas c = new Canvas(b);
+//                                    viewById.layout(0, 0, viewById.getLayoutParams().width, viewById.getLayoutParams().height);
+//                                    viewById.draw(c);
+//                                    viewById.setDrawingCacheEnabled(true);
+//                                    viewById.buildDrawingCache();
+//                                    Bitmap bitmap = viewById.getDrawingCache();
+//                                    tempView.setImageBitmap(bitmap);
+                                } catch (Exception e) {
+
+                                }
                             }
                         });
-
+                        sleep(Config.TIME * 1000);
                     } catch (Exception e) {
 
                     }
@@ -142,7 +196,56 @@ int iii = 1;
         }).start();
     }
 
-    Context context = this;
+    private void initJeptCXXX11() {
+    }
+
+    private void initJeptCXXX() {
+        imageCapture = new ImageCapture.Builder()
+//                .setTargetRotation(ccc.getDisplay().getRotation())
+                .build();
+        ListenableFuture<ProcessCameraProvider> lifecycleOwner = ProcessCameraProvider.getInstance(context);
+        lifecycleOwner.addListener(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    ProcessCameraProvider cameraProvider = lifecycleOwner.get();
+                    Preview preview = new Preview.Builder()
+                            .build();
+                    CameraSelector cameraSelector = new CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build();
+                    cameraProvider.unbindAll();
+
+                    cameraProvider.bindToLifecycle(context, cameraSelector, preview);
+//                    preview ?.setSurfaceProvider(viewFinder.createSurfaceProvider())
+                } catch (Exception e) {
+
+                }
+            }
+        }, ContextCompat.getMainExecutor(context));
+
+    }
+
+    public void takePhoto() {
+        File photoFile = new File("/t" + System.currentTimeMillis() + ".jpg");
+        ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
+        imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
+            @Override
+            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                Uri uri = Uri.fromFile(photoFile);
+                Toast.makeText(context, uri.toString(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, uri.toString());
+            }
+
+            @Override
+            public void onError(@NonNull ImageCaptureException exception) {
+                Log.e(TAG, "Photo capture failed: ${exc.message}", exception);
+            }
+        });
+
+    }
+
+    ImageCapture imageCapture;
+    CameraActivity context = CameraActivity.this;
 
     private void initXX() {
 
@@ -219,7 +322,6 @@ int iii = 1;
         jCameraView.onPause();
     }
 
-    JCameraView jCameraView;
 //
 //    private void getCameraInfo() {
 //        try {

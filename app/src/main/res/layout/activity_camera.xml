@@ -4,19 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    android:id="@+id/root"
+    tools:context=".ui.home.CameraActivity">
 
     <TextureView
         android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <androidx.camera.view.CameraView
+        android:id="@+id/ccc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:keepScreenOn="true"
+        app:flash="auto" />
+
+<!--
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+-->
+
     <com.cjt2325.cameralibrary.JCameraView
         android:id="@+id/jcameraview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         app:duration_max="10000"
         app:iconMargin="20dp"
         app:iconSize="30dp"
-        app:iconSrc="@drawable/ic_camera"/>
+        app:iconSrc="@drawable/ic_camera" />
 </FrameLayout>

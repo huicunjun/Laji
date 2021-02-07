@@ -1,25 +1,26 @@
 package com.example.laji.ui.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.laji.CameraActivity;
+import com.example.laji.ImageSeeActivity;
 import com.example.laji.R;
+import com.example.laji.ui.BHttp;
 import com.example.laji.ui.Config;
 import com.google.android.material.textfield.TextInputEditText;
 
+//laji 存量监控
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -46,8 +47,8 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getContext(), "请输入监听间隔时间！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-               int a= Integer.parseInt(s);
-                if (a<3){
+                int a = Integer.parseInt(s);
+                if (a < 3) {
                     Toast.makeText(getActivity(), "最少3秒", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -57,6 +58,25 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        getView().findViewById(R.id.mx).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Bitmap mode = BHttp.getMode();
+                            ModeSettingActivity.bitmap = mode;
+                            ModeSettingActivity.title = "查看图片";
+                            startActivity(new Intent(getActivity(), ModeSettingActivity.class));
+                        }
+                    }).start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 }

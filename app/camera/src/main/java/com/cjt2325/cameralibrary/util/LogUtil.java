@@ -2,7 +2,6 @@ package com.cjt2325.cameralibrary.util;
 
 import android.util.Log;
 
-import static com.cjt2325.cameralibrary.BuildConfig.DEBUG;
 
 /**
  * =====================================
@@ -15,6 +14,7 @@ import static com.cjt2325.cameralibrary.BuildConfig.DEBUG;
 public class LogUtil {
 
     private static final String DEFAULT_TAG = "CJT";
+    private static final boolean DEBUG = true;
 
     public static void i(String tag, String msg) {
 //        if (DEBUG)

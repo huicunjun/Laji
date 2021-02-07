@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.laji.R;
-
+//垃圾分类识别
 public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;

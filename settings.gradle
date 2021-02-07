@@ -1,4 +1,5 @@
-//include ':camera'
+include ':app:mylibrary'
+include ':camera'
+project(':camera').projectDir = new File(rootDir, 'app/camera/')
 include ':app'
-//project(':camera').projectDir = new File(rootDir, 'app/camera/')
 rootProject.name = "Laji"

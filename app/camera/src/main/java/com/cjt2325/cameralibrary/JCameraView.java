@@ -9,7 +9,7 @@ import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -485,7 +485,6 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
         videoUrl = url;
         JCameraView.this.firstFrame = firstFrame;
         new Thread(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void run() {
                 try {
@@ -595,5 +594,23 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
                 machine.flash(Camera.Parameters.FLASH_MODE_OFF);
                 break;
         }
+    }
+
+    public void setImg2(ImageView viewById) {
+        mSwitchCamera.setVisibility(INVISIBLE);
+        mFlashLamp.setVisibility(INVISIBLE);
+        machine.capture();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    viewById.setImageBitmap(captureBitmap);
+                    machine.cancle(mVideoView.getHolder(), screenProp);
+                } catch (Exception e) {
+
+                }
+            }
+        }, 1800);
     }
 }

@@ -7,7 +7,20 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">垃圾存量监控</string>
+    <string name="menu_gallery">垃圾分类识别</string>
+    <string name="menu_slideshow">垃圾管理</string>
+
+    <!--    <item-->
+    <!--        android:id="@+id/nav_home"-->
+    <!--        android:icon="@drawable/ic_menu_camera"-->
+    <!--        android:title="垃圾存量监控" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/nav_gallery"-->
+    <!--        android:icon="@drawable/ic_menu_gallery"-->
+    <!--        android:title="垃圾分类识别" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/nav_slideshow"-->
+    <!--        android:icon="@drawable/ic_menu_slideshow"-->
+    <!--        android:title="垃圾管理" />-->
 </resources>
