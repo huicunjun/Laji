@@ -66,8 +66,8 @@ public class HomeFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            Bitmap mode = BHttp.getMode();
-                            ModeSettingActivity.bitmap = mode;
+//                            Bitmap mode = BHttp.getMode();
+//                            ModeSettingActivity.bitmap = mode;
                             ModeSettingActivity.title = "查看图片";
                             startActivity(new Intent(getActivity(), ModeSettingActivity.class));
                         }

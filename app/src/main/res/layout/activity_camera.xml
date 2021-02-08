@@ -2,19 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root"
     tools:context=".ui.home.CameraActivity">
 
 
-
-<!--
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
--->
+    <!--
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    -->
 
     <com.cjt2325.cameralibrary.JCameraView
         android:id="@+id/jcameraview"
@@ -25,4 +24,14 @@
         app:iconMargin="20dp"
         app:iconSize="30dp"
         app:iconSrc="@drawable/ic_camera" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:text="1S"
+        android:id="@+id/tttttttt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:textColor="#FFFFFF"
+        android:textSize="33sp" />
 </FrameLayout>

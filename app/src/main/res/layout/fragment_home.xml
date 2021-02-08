@@ -43,6 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="查看模型" />
+            android:text="查看/设置模型" />
     </LinearLayout>
 </FrameLayout>

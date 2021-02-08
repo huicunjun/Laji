@@ -19,5 +19,5 @@
         android:layout_width="wrap_content" android:onClick="edMode"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="修改模型" />
+        android:text="设置模型" />
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import androidx.camera.core.ImageCaptureException;
 import androidx.camera.view.CameraView;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
@@ -41,13 +43,15 @@ public class CameraActivity extends AppCompatActivity {
 //    String mFrontCameraId;
 //    CameraCharacteristics mFrontCameraCharacteristics;
 
-//    String mCameraId;
+    //    String mCameraId;
 //    TextureView mTextureView;
 //    CameraManager mCameraManager;
     int iii = 1;
 
     JCameraView jCameraView;
 //    CameraView ccc;
+
+    int t = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,30 @@ public class CameraActivity extends AppCompatActivity {
         try {
 //            Field machine = jCameraView.getClass().getDeclaredField("machine");
 //            machine.setAccessible(true);
+            TextView textView = findViewById(R.id.tttttttt);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        textView.setText(t + "S");
+                                        t++;
+                                    } catch (Exception e) {
+
+                                    }
+                                }
+                            });
+                            sleep(1000);
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
+            }).start();
         } catch (Exception e) {
 
         }
@@ -119,7 +147,14 @@ public class CameraActivity extends AppCompatActivity {
                                     View lay = LayoutInflater.from(context).inflate(R.layout.sdsadas, null, false);
 //                                    setImg2(lay.findViewById(R.id.iv1));
                                     jCameraView.setImg2(lay.findViewById(R.id.iv1));
-                                    BHttp.setModeImage(lay.findViewById(R.id.iv2));
+
+                                    try {
+                                        Glide.with(getApplicationContext()).load(Config.getLocalMedia(getApplicationContext()).getPath()).into((ImageView) lay.findViewById(R.id.iv2));
+                                    } catch (Exception e) {
+
+                                    }
+
+//                                    BHttp.setModeImage(lay.findViewById(R.id.iv2));
                                     AlertDialog progressDialog = new AlertDialog.Builder(context)
 //                                            .setTitle("处理中...")
                                             .setView(lay)
@@ -134,7 +169,7 @@ public class CameraActivity extends AppCompatActivity {
                                                 sleep(4000);
                                                 runOnUiThread(() -> {
                                                     try {
-                                                        Toast.makeText(context, "处理完成", Toast.LENGTH_SHORT).show();
+                                                        Config.randomToast(getApplicationContext());
                                                         progressDialog.dismiss();
                                                     } catch (Exception e) {
                                                     }
@@ -160,7 +195,7 @@ public class CameraActivity extends AppCompatActivity {
                                         if (childAt.callOnClick()) {
 
                                         }
-                                        System.out.println(childAt+"          VVVVVVVVVVVVVVV");
+                                        System.out.println(childAt + "          VVVVVVVVVVVVVVV");
                                     }
 //                                    FrameLayout viewById = findViewById(R.id.root);
 //                                    Bitmap b = Bitmap.createBitmap(200 , 200, Bitmap.Config.ARGB_8888);
