@@ -103,18 +103,19 @@ public class CameraActivity extends AppCompatActivity {
                 public void run() {
                     while (true) {
                         try {
+
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     try {
                                         textView.setText(t + "S");
-                                        t++;
                                     } catch (Exception e) {
 
                                     }
                                 }
                             });
-                            sleep(1000);
+                            t++;
+                            sleep(1200);
                         } catch (Exception e) {
 
                         }
@@ -130,7 +131,7 @@ public class CameraActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(1500);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 while (true) {
