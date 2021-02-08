@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -35,5 +36,13 @@ public class BHttp {
 
     public static void setModeImage(ImageView viewById) {
         Glide.with(viewById.getContext()).load(modeUrl).into(viewById);
+    }
+
+    public static String checkLaji(String s) throws Exception {
+        String ss = "https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx?a=GET_KEYWORDS&kw=" + s;
+        FormBody formBody = new FormBody.Builder()
+                .build();
+        String string = okHttpClient.newCall(new Request.Builder().post(formBody).url(ss).build()).execute().body().string();
+        return string;
     }
 }
