@@ -1,6 +1,7 @@
 package com.example.laji.ui.gallery;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.laji.LoginActivity;
 import com.example.laji.R;
 import com.example.laji.bean.LajiStrBean;
 import com.example.laji.ui.BHttp;
@@ -31,7 +33,6 @@ import java.util.List;
 public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
@@ -42,11 +43,21 @@ public class GalleryFragment extends Fragment {
         return root;
     }
 
+
     TextInputEditText editText;
 
+    private static boolean ttt = false;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        if (!ttt) {
+            ttt = true;
+            LoginActivity.str = "垃圾分类识别";
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }
+
 
         editText = getView().findViewById(R.id.ed);
         getView().findViewById(R.id.oklll).setOnClickListener(new View.OnClickListener() {

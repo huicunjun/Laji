@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.example.laji.R;
+import com.example.laji.bean.ResultBean;
 import com.google.gson.Gson;
 import com.luck.picture.lib.entity.LocalMedia;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Config {
@@ -36,6 +40,14 @@ public class Config {
     public static LocalMedia getLocalMedia(Context context) {
         String setLocalMedia = getSharedPreferences(context).getString("setLocalMedia", "");
         return new Gson().fromJson(setLocalMedia, LocalMedia.class);
+    }
+
+    public static ResultBean getLocalMediaV2(Context context) {
+        List<ResultBean> list = new ArrayList<>();
+        list.add(new ResultBean("0%", R.drawable.a1));
+        list.add(new ResultBean("10%", R.drawable.a2));
+        int anInt = new Random().nextInt(list.size());
+        return list.get(anInt);
     }
 
     public static void randomToast(Context context) {

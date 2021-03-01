@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Laji"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.ModeSettingActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".ui.home.ModeSettingActivity" />
         <activity android:name=".ImageSeeActivity" />
         <activity android:name=".ui.home.CameraActivity" />
         <activity

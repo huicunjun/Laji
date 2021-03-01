@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.laji.ImageSeeActivity;
+import com.example.laji.LoginActivity;
 import com.example.laji.R;
 import com.example.laji.ui.BHttp;
 import com.example.laji.ui.Config;
@@ -33,9 +34,20 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    static boolean ttt = false;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (!ttt) {
+            ttt = true;
+            LoginActivity.str = "垃圾存量监控平台";
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+//            return;
+        }
+
+
         TextInputEditText ed = getView().findViewById(R.id.ed);
         ed.setText(Config.TIME + "");
         View viewById = getView().findViewById(R.id.ok);

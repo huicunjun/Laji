@@ -29,10 +29,14 @@ import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
 import com.example.laji.R;
+import com.example.laji.XData;
+import com.example.laji.bean.ResultBean;
 import com.example.laji.ui.BHttp;
 import com.example.laji.ui.Config;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.lang.Thread.sleep;
 
@@ -149,8 +153,9 @@ public class CameraActivity extends AppCompatActivity {
 //                                    setImg2(lay.findViewById(R.id.iv1));
                                     jCameraView.setImg2(lay.findViewById(R.id.iv1));
 
+                                    ResultBean resultBean = Config.getLocalMediaV2(getApplicationContext());
                                     try {
-                                        Glide.with(getApplicationContext()).load(Config.getLocalMedia(getApplicationContext()).getPath()).into((ImageView) lay.findViewById(R.id.iv2));
+                                        Glide.with(getApplicationContext()).load(resultBean.ids).into((ImageView) lay.findViewById(R.id.iv2));
                                     } catch (Exception e) {
 
                                     }
@@ -170,7 +175,10 @@ public class CameraActivity extends AppCompatActivity {
                                                 sleep(4000);
                                                 runOnUiThread(() -> {
                                                     try {
-                                                        Config.randomToast(getApplicationContext());
+//                                                        Config.randomToast(getApplicationContext());
+                                                        Toast.makeText(context, "垃圾存量："+resultBean.str, Toast.LENGTH_SHORT).show();
+                                                        resultBean.ctime = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:SS").format(new Date());
+                                                        XData.resultList.add(resultBean);
                                                         progressDialog.dismiss();
                                                     } catch (Exception e) {
                                                     }
