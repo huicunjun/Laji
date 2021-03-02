@@ -156,7 +156,7 @@ public class CameraActivity extends AppCompatActivity {
                                     }
                                     ResultBean resultBean = Config.getRandomV3(getApplicationContext());
                                     try {
-                                        Glide.with(getApplicationContext()).load(R.drawable.q1).into((ImageView) lay.findViewById(R.id.iv2));
+                                        Glide.with(getApplicationContext()).load(resultBean.ids).into((ImageView) lay.findViewById(R.id.iv2));
                                     } catch (Exception e) {
 
                                     }
