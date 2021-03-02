@@ -42,14 +42,28 @@ public class Config {
         return new Gson().fromJson(setLocalMedia, LocalMedia.class);
     }
 
-    public static ResultBean getLocalMediaV2(Context context) {
+    public static ResultBean getRandomLocalMediaV2(Context context) {
         List<ResultBean> list = new ArrayList<>();
         list.add(new ResultBean("0%", R.drawable.a1));
         list.add(new ResultBean("10%", R.drawable.a2));
+        list.add(new ResultBean("20%", R.drawable.a3));
+        list.add(new ResultBean("30%", R.drawable.a4));
+        list.add(new ResultBean("40%", R.drawable.a5));
+        list.add(new ResultBean("50%", R.drawable.a6));
+        list.add(new ResultBean("60%", R.drawable.a7));
+        list.add(new ResultBean("70%", R.drawable.a8));
+        list.add(new ResultBean("80%", R.drawable.a9));
+        list.add(new ResultBean("90%", R.drawable.a10));
+        list.add(new ResultBean("100%", R.drawable.a11));
+        list.add(new ResultBean("满出！", R.drawable.a12));
         int anInt = new Random().nextInt(list.size());
         return list.get(anInt);
     }
+    public static ResultBean getRandomV3(Context context) {
+        ResultBean resultBean = new ResultBean("0%", R.drawable.b0);
 
+        return resultBean;
+    }
     public static void randomToast(Context context) {
         String[] strings = {
                 "垃圾存量20%",

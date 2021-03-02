@@ -1,15 +1,12 @@
 package com.example.laji.ui.home;
 
 import android.graphics.Bitmap;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +17,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
-import androidx.camera.view.CameraView;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
@@ -31,8 +27,8 @@ import com.cjt2325.cameralibrary.listener.JCameraListener;
 import com.example.laji.R;
 import com.example.laji.XData;
 import com.example.laji.bean.ResultBean;
-import com.example.laji.ui.BHttp;
 import com.example.laji.ui.Config;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -112,7 +108,8 @@ public class CameraActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     try {
-                                        textView.setText(t + "S");
+//                                        textView.setText(t + "S");
+                                        textView.setText( "");
                                     } catch (Exception e) {
 
                                     }
@@ -144,18 +141,22 @@ public class CameraActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-
                                     //   jCameraView.confirmState(JCameraView.TYPE_PICTURE);
 //                                    ProgressDialog progressDialog = new ProgressDialog(context);
 //                                    progressDialog.setTitle("抓拍第" + iii + "次...");
 //                                    progressDialog.show();
                                     View lay = LayoutInflater.from(context).inflate(R.layout.sdsadas, null, false);
 //                                    setImg2(lay.findViewById(R.id.iv1));
-                                    jCameraView.setImg2(lay.findViewById(R.id.iv1));
-
-                                    ResultBean resultBean = Config.getLocalMediaV2(getApplicationContext());
+//                                    jCameraView.setImg2(lay.findViewById(R.id.iv1));
                                     try {
-                                        Glide.with(getApplicationContext()).load(resultBean.ids).into((ImageView) lay.findViewById(R.id.iv2));
+                                        LocalMedia localMedia = Config.getLocalMedia(getApplicationContext());
+                                        Glide.with(getApplicationContext()).load(localMedia.getPath()).into((ImageView) lay.findViewById(R.id.iv1));
+                                    } catch (Exception e) {
+
+                                    }
+                                    ResultBean resultBean = Config.getRandomV3(getApplicationContext());
+                                    try {
+                                        Glide.with(getApplicationContext()).load(R.drawable.q1).into((ImageView) lay.findViewById(R.id.iv2));
                                     } catch (Exception e) {
 
                                     }

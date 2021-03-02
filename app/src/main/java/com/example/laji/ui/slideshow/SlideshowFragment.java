@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.laji.LoginActivity;
 import com.example.laji.R;
 import com.example.laji.XData;
@@ -29,13 +31,6 @@ public class SlideshowFragment extends Fragment {
         slideshowViewModel =
                 new ViewModelProvider(this).get(SlideshowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 
@@ -76,8 +71,10 @@ public class SlideshowFragment extends Fragment {
                 TextView tv = convertView.findViewById(R.id.t1);
 
                 ResultBean resultBean = XData.resultList.get(position);
-                tv.setText("" + resultBean.str);
-                tv.setText(""+resultBean.ctime);
+                ImageView iv = convertView.findViewById(R.id.iv);
+                Glide.with(getActivity()).load(resultBean.ids).into(iv);
+                tv.setText("监控结果:" + resultBean.str+"     执行时间:"+resultBean.ctime);
+//                tv.setText("");
 
                 return convertView;
             }

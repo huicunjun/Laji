@@ -7,5 +7,6 @@ import java.util.List;
 
 public class XData {
 
+    public static  Object rengong  = null;
     public static List<ResultBean> resultList = new ArrayList<>();
 }
