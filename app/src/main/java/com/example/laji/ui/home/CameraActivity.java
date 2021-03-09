@@ -146,6 +146,10 @@ public class CameraActivity extends AppCompatActivity {
 //                                    progressDialog.setTitle("抓拍第" + iii + "次...");
 //                                    progressDialog.show();
                                     View lay = LayoutInflater.from(context).inflate(R.layout.sdsadas, null, false);
+                                    View qqq1111111 = lay.findViewById(R.id.qqq1111111);
+                                    View qqqq222222222 = lay.findViewById(R.id.qqqq222222222);
+                                    qqq1111111.setVisibility(View.VISIBLE);
+                                    qqqq222222222.setVisibility(View.GONE);
 //                                    setImg2(lay.findViewById(R.id.iv1));
 //                                    jCameraView.setImg2(lay.findViewById(R.id.iv1));
                                     try {
@@ -167,21 +171,30 @@ public class CameraActivity extends AppCompatActivity {
                                             .setView(lay)
                                             .show();
                                     iii++;
-
+                                    ImageView ivvvvvvvvv = lay.findViewById(R.id.ivvvvvvvvv);
 
                                     new Thread(new Runnable() {
                                         @Override
                                         public void run() {
                                             try {
-                                                sleep(4000);
+                                                sleep(1500);
                                                 runOnUiThread(() -> {
                                                     try {
+                                                        qqq1111111.setVisibility(View.GONE);
+                                                        qqqq222222222.setVisibility(View.VISIBLE);
+                                                        Glide.with(ivvvvvvvvv).load(resultBean.ids).into(ivvvvvvvvv);
 //                                                        Config.randomToast(getApplicationContext());
                                                         Toast.makeText(context, "垃圾存量："+resultBean.str, Toast.LENGTH_SHORT).show();
                                                         resultBean.ctime = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:SS").format(new Date());
                                                         XData.resultList.add(resultBean);
-                                                        progressDialog.dismiss();
                                                     } catch (Exception e) {
+                                                    }
+                                                });
+                                                sleep(3500);
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        progressDialog.dismiss();
                                                     }
                                                 });
                                             } catch (Exception e) {

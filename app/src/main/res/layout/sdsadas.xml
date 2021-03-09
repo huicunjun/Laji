@@ -1,70 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/qqq1111111"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="300dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="拍摄取样"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <ProgressBar
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp"
+            android:orientation="vertical">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:gravity="center"
+                android:text="拍摄取样"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="模型"
+                android:textColor="#000000"
+                android:textSize="25sp" />
 
             <ImageView
-                android:id="@+id/iv1"
+                android:id="@+id/iv2"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:scaleType="centerCrop" />
-        </FrameLayout>
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="模型"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <ImageView
-            android:id="@+id/iv2"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="fitXY" />
+            android:text="比对处理中" />
     </LinearLayout>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/qqqq222222222"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="比对处理中" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="垃圾存量监控平台"
+                android:textColor="#ffffff"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="垃圾A-1桶实时数据"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp">
+
+                <ImageView android:id="@+id/ivvvvvvvvv"
+                    android:layout_width="0dp" android:layout_marginEnd="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="接收数据频次:15MIN/次"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+
+                    <TextView android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="目前存量：0%"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+
+                    <TextView  android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="催促时间间隔：10MIN"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+
+                    <TextView  android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="催促讯息状态：已启动"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bttttt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清理完成"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

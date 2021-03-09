@@ -22,6 +22,7 @@ import com.example.laji.R;
 import com.example.laji.XData;
 import com.example.laji.bean.ResultBean;
 
+//垃圾管理报警
 public class SlideshowFragment extends Fragment {
 
     private SlideshowViewModel slideshowViewModel;
@@ -73,10 +74,18 @@ public class SlideshowFragment extends Fragment {
                 ResultBean resultBean = XData.resultList.get(position);
                 ImageView iv = convertView.findViewById(R.id.iv);
                 Glide.with(getActivity()).load(resultBean.ids).into(iv);
-                tv.setText("监控结果:" + resultBean.str+"     执行时间:"+resultBean.ctime);
+                tv.setText("监控结果:" + resultBean.str + "     执行时间:" + resultBean.ctime);
 //                tv.setText("");
 
                 return convertView;
+            }
+        });
+
+
+        getActivity().findViewById(R.id.ttttttt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), BaojinActivity.class));
             }
         });
     }
